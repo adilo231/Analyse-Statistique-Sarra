@@ -1,77 +1,121 @@
-# Analyse-Statistique-Sarra
+# 📊 Analyse Statistique – Résultats de Thèse
 
+*Ce dépôt présente les analyses statistiques du chapitre de résultats de la thèse de doctorat en Microbiologie.*
 
+---
 
-## Introduction
+## 🎓 Contexte Académique
+**THÈSE DE DOCTORAT (LMD 3ᵉ Cycle)**  
+**Spécialité :** Microbiologie Appliquée  
+**Titre :** *Recherche d'antibiotiques d'origine actinobactérienne actifs contre les bactéries impliquées dans les infections communautaires*  
+**Candidate :** BENMOUMOU Sarra  
+**Institution :** [Nom de l'Université]  
+**Année :** 2023  
 
-Ce répertoire GitHub est destiné à expliquer le processus utilisé pour générer des graphiques et effectuer des analyses statistiques dans le cadre de la thèse de [Votre Nom]. Tous les graphiques générés et les analyses statistiques sont présentés dans le chapitre des résultats de la thèse.
+---
 
-Ce code sert à illustrer comment les graphiques et les tests statistiques sont réalisés pour analyser les relations entre les variables, telles que les espèces bactériennes, le sexe, les groupes d'âge, et la résistance aux antibiotiques. Les résultats obtenus permettent d’explorer les patterns de résistance et de comparer les groupes selon des critères définis, tels que l’espèce bactérienne (*Staphylococcus saprophyticus* et *Enterobacteriaceae*) et le sexe des individus.
+## 🎯 Objectifs Scientifiques
 
-L'objectif de ce répertoire est de fournir un code explicatif, accompagné de visualisations détaillées et d'analyses statistiques, afin d'aider à comprendre les démarches méthodologiques et les résultats de l'analyse des données.
+Cette analyse vise à caractériser les relations entre paramètres cliniques et microbiologiques à partir d'isolats bactériens, avec pour finalités :
 
-## Prérequis
+1. **Étude des associations clinico-microbiologiques :**
+   - Espèce bactérienne × Genre des patients
+   - Espèce bactérienne × Catégorie d'âge
+   - Résistance antibiotique × Paramètres démographiques
 
-### 1. Installer Python et Jupyter
+2. **Évaluation des profils de multi-résistance :**
+   - Prévalence selon les espèces bactériennes
+   - Distribution par classe d'antibiotiques
+   - Corrélations avec les facteurs cliniques
 
-Avant de pouvoir exécuter ce code, vous devez installer Python et Jupyter.
+---
 
-#### 1.1 Télécharger et installer Python
+## 📈 Méthodologie Statistique
 
-- Allez sur le site officiel de Python : [https://www.python.org/downloads/](https://www.python.org/downloads/)
-- Téléchargez la version la plus récente de Python et installez-la sur votre machine.
-- Assurez-vous de cocher l'option "Add Python to PATH" lors de l'installation.
+### 🔍 Exploration des Données
+- Nettoyage des jeux de données (valeurs manquantes, cohérence)
+- Catégorisation des variables :
+  - **Âge :** 5 classes (Nouveau-né <1an, Enfant 1-12ans, Adolescent 13-18ans, Adulte 19-65ans, Senior >65ans)
+  - **Résistance :** Sensible/Intermediaire/Résistant selon EUCAST
 
-#### 1.2 Installer Jupyter Notebook
+### 📊 Approche Analytique
+| Type de Données | Test Statistique | Visualisation |
+|----------------|------------------|---------------|
+| Variables catégorielles | Test du χ² (Chi²) | Diagrammes en barres empilées |
+| Petits effectifs (n<5) | Test exact de Fisher | Mosaic plots |
+| Variables ordinales | Kruskal-Wallis | Boxplots/Violin plots |
+| Comparaisons multiples | Correction de Bonferroni | Heatmaps |
 
-- Ouvrez un terminal ou une invite de commande et tapez la commande suivante pour installer Jupyter via pip :
+## 🛠️ Outils Computationnels
+```python
+# Exemple de pipeline d'analyse
+import pandas as pd
+from scipy.stats import chi2_contingency
+
+def analyse_resistance(df):
+    tableau_contingence = pd.crosstab(df['Espèce'], df['Résistance'])
+    chi2, pval, _, _ = chi2_contingency(tableau_contingence)
+    return pval
+
+### 💻 Installation de l'Environnement
+Option 1 : Jupyter Notebook
+
+    Installer Anaconda (recommandé)
+
+    Créer l'environnement :
+
 ```bash
+Copy
+
+conda create -n analyse_these python=3.9
+conda activate analyse_these
 pip install -r requirements.txt
+jupyter notebook
 ```
+Option 2 : Visual Studio Code
 
-Si vous ne disposez pas de ce fichier, vous pouvez installer chaque bibliothèque individuellement en utilisant pip.
+    Installer VSCode
 
-#### Liste des bibliothèques nécessaires :
+    Ajouter les extensions :
 
-- **`pandas`** : Utilisé pour la manipulation et l'analyse des données. Il permet de lire, transformer et analyser les données structurées (par exemple, les fichiers CSV).
-  ```bash
-  pip install pandas
-  ```
+        Jupyter (Microsoft)
 
-- **`matplotlib`** : Utilisé pour la création de graphiques statiques. Il permet de générer des graphiques simples comme des histogrammes, des courbes, des diagrammes en barres, etc.
-  ```bash
-  pip install matplotlib
-  ```
+        Python (Microsoft)
 
-- **`seaborn`** : Une extension de `matplotlib`, qui simplifie la création de graphiques plus complexes et visuellement attrayants. Il est particulièrement utile pour des visualisations statistiques comme les heatmaps.
-  ```bash
-  pip install seaborn
-  ```
+    Configurer l'interpréteur Python 3.9+
 
-- **`scipy`** : Utilisé pour effectuer des tests statistiques. Dans ce projet, il est utilisé pour le test du chi-carré afin de vérifier les relations entre différentes variables.
-  ```bash
-  pip install scipy
-  ```
+### 📦 Dépendances (requirements.txt)
+Copy
 
-## Utilisation
+pandas>=1.4.0
+matplotlib>=3.5.0
+seaborn>=0.11.2
+scipy>=1.8.0
+statsmodels>=0.13.2
+jupyterlab>=3.4.0
 
-Une fois que les bibliothèques sont installées et que votre environnement est prêt, vous pouvez exécuter les scripts pour générer les analyses statistiques et les graphiques. 
+## ▶️ Guide d'Utilisation
 
-1. **Lancer Jupyter Notebook** : 
-   Pour lancer Jupyter Notebook, tapez la commande suivante dans votre terminal :
+    Structure des Données :
 
-   ```bash
-   jupyter notebook
-   ```
+        Placer les fichiers bruts dans /data
 
-   Cela ouvrira Jupyter dans votre navigateur, où vous pourrez exécuter le code de manière interactive.
+        Format requis : CSV avec encodage UTF-8
 
-2. **Exécuter le code** : 
-   Vous pouvez exécuter les notebooks  pour effectuer les analyses et générer les résultats. Assurez-vous que les fichiers de données nécessaires sont dans le bon répertoire avant d'exécuter les scripts.
+    Exécution des Analyses :
+    bash
+    Copy
 
+    cd notebooks/
+    jupyter notebook analyse_principale.ipynb
 
-Cela lancera le code et générera les résultats de l'analyse, y compris les graphiques et les fichiers CSV dans le répertoire `results/`.
+    Sorties :
 
+        Figures : /results/figures/*.png (300 dpi)
+
+        Tables : /results/tables/*.csv
+
+        Rapports : /results/reports/analyse_[date].html
 
 
 
