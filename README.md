@@ -9,7 +9,7 @@
 **Spécialité :** Microbiologie Appliquée  
 **Titre :** *Recherche d'antibiotiques d'origine actinobactérienne actifs contre les bactéries impliquées dans les infections communautaires*  
 **Candidate :** BENMOUMOU Sarra  
-**Institution :** [Nom de l'Université]  
+**Institution :** Université  de Blida 1
 **Année :** 2023  
 
 ---
