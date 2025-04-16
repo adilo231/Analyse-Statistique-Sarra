@@ -10,7 +10,7 @@
 **Titre :** *Recherche d'antibiotiques d'origine actinobactérienne actifs contre les bactéries impliquées dans les infections communautaires*  
 **Candidate :** BENMOUMOU Sarra  
 **Institution :** Université  de Blida 1
-**Année :** 2023  
+**Année :** 2025  
 
 ---
 
@@ -87,12 +87,14 @@ Option 2 : Visual Studio Code
 ### 📦 Dépendances (requirements.txt)
 Copy
 
+```
 pandas>=1.4.0
 matplotlib>=3.5.0
 seaborn>=0.11.2
 scipy>=1.8.0
 statsmodels>=0.13.2
 jupyterlab>=3.4.0
+```
 
 ## ▶️ Guide d'Utilisation
 
