@@ -56,7 +56,7 @@ def analyse_resistance(df):
     tableau_contingence = pd.crosstab(df['Espèce'], df['Résistance'])
     chi2, pval, _, _ = chi2_contingency(tableau_contingence)
     return pval
-
+```
 ### 💻 Installation de l'Environnement
 Option 1 : Jupyter Notebook
 
